@@ -44,3 +44,36 @@ cd project
 python3 manage.py makemigrations
 python3 manage.py migrate
 ```
+
+## Create super admin
+```
+python3 manage.py createsuperuser
+```
+
+# Using all Auth:
+- Link to authenticate users
+```
+[Link](http://127.0.0.1:8000/accounts/signup/)
+```
+
+## NB:
+- Dont forget to add "Authorized JavaScript origins" in [Link](https://console.cloud.google.com/apis/credentials/) 
+```
+http://127.0.0.1:8000
+```
+- Also add "Authorized redirect URI"s in google console
+```
+http://127.0.0.1:8000
+http://127.0.0.1:8000/accounts/google/login/callback/
+```
+
+# LOGIN WITH ALLAUTH:
+- URL : http://127.0.0.1:8000/accounts/login/
+
+
+## Testing all tests
+```
+python3 manage.py test
+```
+
+
