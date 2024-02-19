@@ -146,6 +146,7 @@ DATABASES = {
     }
 }
 
+
 # # MYSQL DB.. 
 # NB : MYSQL database not working properly due to allauth package.
 # DATABASES = {

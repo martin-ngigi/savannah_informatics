@@ -32,4 +32,11 @@ jobs:
     - name: Run tests
       run: |
         cd project
+        
+        # Set TEST_DATABASE_PREFIX variable to an empty string if it is None
+        TEST_DATABASE_PREFIX="${TEST_DATABASE_PREFIX:-}"
+
+        # Concatenate TEST_DATABASE_PREFIX and database name, handling None case
+        DB_NAME="${TEST_DATABASE_PREFIX}${DB_NAME}"
+
         python manage.py test
