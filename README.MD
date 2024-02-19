@@ -78,6 +78,10 @@ http://127.0.0.1:8000/accounts/google/login/callback/
 - items url:
 - http://127.0.0.1:8000/items/all/
 - http://127.0.0.1:8000/items/all/{item_id}/
+- orders url:
+- http://127.0.0.1:8000/orders/all/
+- http://127.0.0.1:8000/orders/all/{item_id}/
+- http://127.0.0.1:8000/orders/user-orders/
 
 ## Testing all tests
 ```
@@ -88,6 +92,7 @@ python3 manage.py test
 ```
 python3 manage.py test profile_account.tests
 python3 manage.py test items.tests
+python3 manage.py test orders.tests
 ```
 
 

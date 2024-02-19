@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     # Local apps
     'profile_account',
     'items',
+    'orders',
 
 ]
 

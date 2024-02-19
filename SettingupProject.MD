@@ -28,4 +28,5 @@ python3 manage.py runserver
 ```
 python3 manage.py startapp profile_account
 python3 manage.py startapp items
+python3 manage.py startapp orders
 ```
