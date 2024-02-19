@@ -44,3 +44,63 @@ cd project
 python3 manage.py makemigrations
 python3 manage.py migrate
 ```
+
+## Create super admin
+```
+python3 manage.py createsuperuser
+```
+
+# Using all Auth:
+- Link to authenticate users
+```
+[Link](http://127.0.0.1:8000/accounts/signup/)
+```
+
+## NB:
+- Dont forget to add "Authorized JavaScript origins" in [Link](https://console.cloud.google.com/apis/credentials/) 
+```
+http://127.0.0.1:8000
+```
+- Also add "Authorized redirect URI"s in google console
+```
+http://127.0.0.1:8000
+http://127.0.0.1:8000/accounts/google/login/callback/
+```
+
+# LOGIN WITH ALLAUTH:
+- URL : http://127.0.0.1:8000/accounts/login/
+
+
+
+-  users url:
+- http://127.0.0.1:8000/users/all/
+- http://127.0.0.1:8000/users/{user_id}/
+- items url:
+- http://127.0.0.1:8000/items/all/
+- http://127.0.0.1:8000/items/all/{item_id}/
+- orders url:
+- http://127.0.0.1:8000/orders/all/
+- http://127.0.0.1:8000/orders/all/{item_id}/
+- http://127.0.0.1:8000/orders/user-orders/
+
+## Testing all tests
+```
+python3 manage.py test
+```
+
+# Testing single module
+```
+python3 manage.py test profile_account.tests
+python3 manage.py test items.tests
+python3 manage.py test orders.tests
+```
+
+
+# ScreenShots
+<img src="screenshots/Users.png" height="400"/>
+<img src="screenshots/CreateItem.png" height="400"/>
+<img src="screenshots/Items.png" height="400"/>
+<img src="screenshots/CreateOrder.png" height="400"/>
+<img src="screenshots/Orders.png" height="400"/>
+<img src="screenshots/SendSms.png" height="200"/>
+

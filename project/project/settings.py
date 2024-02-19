@@ -12,6 +12,14 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 
+# load .env variables
+from dotenv import load_dotenv
+import os
+load_dotenv()
+
+import sys
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -37,6 +45,20 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # Third party libraries
+    'rest_framework',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    # 'allauth.socialaccount.providers.twitter',
+
+    # Local apps
+    'profile_account',
+    'items',
+    'orders',
+
 ]
 
 MIDDLEWARE = [
@@ -47,9 +69,59 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    # Account middleware for third party authentication:
+    "allauth.account.middleware.AccountMiddleware",
+    # 'allauth.socialaccount.middleware.SocialAccountMiddleware',
+
 ]
 
 ROOT_URLCONF = 'project.urls'
+
+
+# Provider specific settings
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'APP': {
+            'client_id': os.getenv("GOOGLE_CLIENT_ID"),
+            'secret': os.getenv("GOOGLE_CLIENT_SECRET"),
+            'key': ''
+        },
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        },
+        'FETCH_USERINFO' : True
+    },
+    # 'twitter': {
+    #     'APP': {
+    #         'client_id': os.getenv("TWITTER_API_KEY"),
+    #         'secret': 'os.getenv("TWITTER_CONSUMER_SECRET")',
+    #         'key': ''
+    #     }
+    # },
+}
+
+AUTHENTICATION_BACKENDS = [
+    # Login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by email
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'allauth.account.auth_backends.AuthenticationBackend',
+        'rest_framework.authentication.SessionAuthentication',
+    ),
+}
+
+ACCOUNT_EMAIL_VERIFICATION = 'none'  # Disable email verification
+SITE_ID = 1
 
 TEMPLATES = [
     {
@@ -73,12 +145,52 @@ WSGI_APPLICATION = 'project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+
+# SQLite Database
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
+
+# # MYSQL DB.. 
+# NB : MYSQL database not working properly due to allauth package.
+# DATABASES = {
+#     'default': {
+#         'NAME': os.getenv("MYSQL_DB_NAME"),
+#         'ENGINE': 'mysql.connector.django',   # 'django.db.backends.mysql'
+#         'USER': os.getenv("MYSQL_DB_USER"),
+#         'PASSWORD': os.getenv("MYSQL_DB_PASSWORD"),
+#         'HOST': os.getenv("MYSQL_DB_HOST"),
+#         'PORT': os.getenv("MYSQL_PORT"),
+#         'OPTIONS': {
+#             'autocommit': True,
+#         },
+#     }
+# }
+
+# PostgreSQL database
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': os.getenv("PG_DB_NAME"),
+        'USER': os.getenv("PG_DB_USER"), # this is the superuser
+        'PASSWORD': os.getenv("PG_DB_PASSWORD"), # this is the superuser password
+        'HOST': os.getenv("PG_DB_HOST"),
+        'PORT': os.getenv("PG_DB_PORT"),
     }
 }
+
+
+if 'test' in sys.argv:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 
 # Password validation
