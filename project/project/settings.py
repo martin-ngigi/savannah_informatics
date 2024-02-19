@@ -54,6 +54,9 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     # 'allauth.socialaccount.providers.twitter',
 
+    # Local apps
+    'profile_account',
+
 ]
 
 MIDDLEWARE = [

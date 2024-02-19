@@ -71,9 +71,19 @@ http://127.0.0.1:8000/accounts/google/login/callback/
 - URL : http://127.0.0.1:8000/accounts/login/
 
 
+
+-  users url:
+- http://127.0.0.1:8000/users/all/
+- http://127.0.0.1:8000/users/{user_id}/
+
 ## Testing all tests
 ```
 python3 manage.py test
+```
+
+# Testing single module
+```
+python3 manage.py test profile_account.tests
 ```
 
 
