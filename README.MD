@@ -96,3 +96,11 @@ python3 manage.py test orders.tests
 ```
 
 
+# ScreenShots
+<img src="screenshots/Users.png" height="400"/>
+<img src="screenshots/CreateItem.png" height="400"/>
+<img src="screenshots/Items.png" height="400"/>
+<img src="screenshots/CreateOrder.png" height="400"/>
+<img src="screenshots/Orders.png" height="400"/>
+<img src="screenshots/SendSms.png" height="400"/>
+
