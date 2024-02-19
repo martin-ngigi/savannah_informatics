@@ -139,12 +139,12 @@ WSGI_APPLICATION = 'project.wsgi.application'
 
 
 # SQLite Database
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 
 # # MYSQL DB.. 
@@ -172,6 +172,10 @@ DATABASES = {
         'PASSWORD': os.getenv("PG_DB_PASSWORD"), # this is the superuser password
         'HOST': os.getenv("PG_DB_HOST"),
         'PORT': os.getenv("PG_DB_PORT"),
+    },
+    'test': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
