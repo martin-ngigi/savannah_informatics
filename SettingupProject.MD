@@ -27,4 +27,5 @@ python3 manage.py runserver
 - Create apps
 ```
 python3 manage.py startapp profile_account
+python3 manage.py startapp items
 ```

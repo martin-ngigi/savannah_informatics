@@ -75,6 +75,9 @@ http://127.0.0.1:8000/accounts/google/login/callback/
 -  users url:
 - http://127.0.0.1:8000/users/all/
 - http://127.0.0.1:8000/users/{user_id}/
+- items url:
+- http://127.0.0.1:8000/items/all/
+- http://127.0.0.1:8000/items/all/{item_id}/
 
 ## Testing all tests
 ```
@@ -84,6 +87,7 @@ python3 manage.py test
 # Testing single module
 ```
 python3 manage.py test profile_account.tests
+python3 manage.py test items.tests
 ```
 
 
