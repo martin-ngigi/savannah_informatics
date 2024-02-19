@@ -175,19 +175,9 @@ DATABASES = {
         'PASSWORD': os.getenv("PG_DB_PASSWORD"), # this is the superuser password
         'HOST': os.getenv("PG_DB_HOST"),
         'PORT': os.getenv("PG_DB_PORT"),
-    },
-    'test': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
-# TEST = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
 
 if 'test' in sys.argv:
     DATABASES = {
